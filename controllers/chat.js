@@ -29,7 +29,7 @@ function joinRoom(req, res) {
                                             res.status(500).send({ message: err });
                                         } else {
                                             if (rm) {
-                                                Message.find({room:rm._id}).sort('-created')
+                                                Message.find({room:rm}).sort('-created')
                                                 .exec(function(err, msjs) {
                                                     if(err){
                                                         res.status(500).send({message:'Error no se logro obtener los mensajes'});
@@ -76,8 +76,8 @@ function sendMessage(req,res){
     var msg = new Message();
     var params = req.body;
     msg.content = params.message;
-    msg.user = params.user._id;
-    msg.room = params.room._id;
+    msg.user = params.user;
+    msg.room = params.room;
     Message.collection.dropIndexes(function (err, results) {
         if(err){
             res.status(500).send({message:err});

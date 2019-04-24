@@ -10,8 +10,8 @@ var MessageSchema = Schema({
         type:String,
         default:''
     },
-    user: {type: Schema.ObjectId, ref: "User"},
-    room: {type: Schema.ObjectId, ref: "Room"},
+    user: User,
+    room: Room,
 	createdAt: {
         type: Date,
         default: Date.now
