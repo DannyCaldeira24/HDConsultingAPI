@@ -24,7 +24,7 @@ function joinRoom(req, res) {
                                 if(err){
                                     res.status(500).send({ message: err });
                                 }else{
-                                    Room.findOne({ users: { $all: [send, receive] } }, (err, rm) => {
+                                    Room.findOne({ users: { $all: [params.idSend, params.idReceive] } }, (err, rm) => {
                                         if (err) {
                                             res.status(500).send({ message: err });
                                         } else {

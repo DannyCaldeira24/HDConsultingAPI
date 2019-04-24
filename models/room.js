@@ -8,7 +8,7 @@ var RoomSchema = Schema({
     name: {
         type: String
     },
-    users:[User],
+    users:[{type: Schema.ObjectId, ref: "User"}],
     description: {
         type: String,
         default:'SINGLE_CHAT'
