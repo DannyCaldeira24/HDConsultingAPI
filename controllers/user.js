@@ -434,7 +434,7 @@ function getContacts(req, res) {
 		} else {
 			if (usr) {
 				if (usr.role == 'ROLE_ADMIN') {
-					User.find({ role: 'ROLE_USER' }).sort('name').exec((err, users) => {
+					User.find({email: { $ne: usr.email }}).sort('name').exec((err, users) => {
 						if (err) {
 							res.status(500).send({ message: 'Error en la petición' });
 						} else {
