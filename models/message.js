@@ -12,6 +12,10 @@ var MessageSchema = Schema({
     },
     user: User,
     room: Room,
+    read:{
+        type:Boolean,
+        default:false
+    },
 	createdAt: {
         type: Date,
         default: Date.now
