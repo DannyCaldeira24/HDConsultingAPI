@@ -53,7 +53,7 @@ function joinRoom(req, res) {
             });
         }
     });
-         
+
 }
 
 function sendMessage(req, res) {
@@ -91,7 +91,7 @@ function contRooms(rooms, userId, cont) {
         });
         setTimeout(function () {
             resolve(cont);
-        }, 3000);
+        }, 4000);
         if (!rooms) {
             reject(new Error('Error'));
         }
@@ -160,7 +160,7 @@ function getContactsNotifications(req, res) {
 
     setTimeout(function () {
         res.status(200).send({ noReadMessages: contactsMessages });
-    }, 3000);
+    }, 6000);
 
 }
 
@@ -171,7 +171,14 @@ function readMessages(req, res) {
         if (err) {
             res.status(500).send({ message: err });
         } else {
-            res.status(200).send({ messages: messagesUpdated });
+            Message.find({ 'room._id': roomId }).sort('-created')
+                .exec(function (err, msjs) {
+                    if (err) {
+                        res.status(500).send({ message: 'Error no se logro obtener los mensajes' });
+                    } else {
+                        res.status(200).send({ messages: msjs, result: messagesUpdated });
+                    }
+                });
         }
     });
 }

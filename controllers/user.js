@@ -446,7 +446,7 @@ function getContacts(req, res) {
 						}
 					});
 				} else {
-					User.find({ role: 'ROLE_ADMIN' }).exec((err, users) => {
+					User.find({ role: 'ROLE_ADMIN' }).sort('name').exec((err, users) => {
 						if (err) {
 							res.status(500).send({ message: 'Error en la petición' });
 						} else {
