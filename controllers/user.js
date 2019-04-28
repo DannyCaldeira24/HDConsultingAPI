@@ -613,21 +613,12 @@ function resetPassword(req, res) {
 
 function logout(req, res) {
 	var userId = req.params.id;
-	User.findById(userId, (err, usr) => {
+	User.findByIdAndUpdate({ _id: userId }, { online: false, isLogout: Date.now() }, { upsert: true, new: true }, (err, usrLogout) =>{
 		if (err) {
 			res.status(500).send({ message: err });
 		} else {
-			if (usr) {
-				usr.online = false;
-				usr.save((err, usrLogout) => {
-					if (err) {
-						res.status(500).send({ message: err });
-					} else {
-						if (usrLogout) {
-							res.status(200).send({ logout: usrLogout });
-						}
-					}
-				});
+			if (usrLogout) {
+				res.status(200).send({ logout: usrLogout });
 			}
 		}
 	});

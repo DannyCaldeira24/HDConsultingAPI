@@ -4,23 +4,24 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = Schema({
+	provider: { type: String, default: 'HDConsulting' },
+	provider_id: { type: String, default: 'IDConsulting' },
 	name: { type: String, required: true },
 	surname: { type: String },
 	email: { type: String, required: true, unique: true },
-	provider: { type: String, default: 'HDConsulting' },
-	provider_id: { type: String, default: 'null' },
 	role: { type: String, default: 'ROLE_USER' },
 	password: { type: String },
 	image: { type: String, default: 'noimage.png' },
-	resetPasswordToken: { type: String, default: 'null' },
-	resetPasswordExpires: { type: Date, default: Date.now },
+	position: { type: String },
 	urlFacebook: { type: String },
 	urlTwitter: { type: String },
 	urlLinkedin: { type: String },
-	position: { type: String },
-	verifiedToken: { type: String, default: 'null' },
-	verifiedTokenExpires: { type: Date, default: Date.now },
+	isLogout: {type:Date, default: Date.now},
+	resetPasswordToken: { type: String, default: 'Nun' },
+	resetPasswordExpires: { type: Date, default: Date.now },
 	verified: {type:Boolean, default:false},
+	verifiedToken: { type: String, default: 'Nun' },
+	verifiedTokenExpires: { type: Date, default: Date.now },
 	online: {
 		type: Boolean,
 		default: false

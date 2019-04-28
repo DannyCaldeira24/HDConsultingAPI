@@ -42,7 +42,7 @@ function joinRoom(req, res) {
                                 res.status(500).send({ message: err });
                             } else {
                                 if (!roomStored) {
-                                    res.status(404).send({ message: 'ERROR: No se ha registrado la sala' });
+                                    res.status(500).send({ message: 'ERROR: No se ha registrado la sala' });
                                 } else {
                                     res.status(200).send({ room: roomStored });
                                 }
@@ -91,7 +91,7 @@ function contRooms(rooms, userId, cont) {
         });
         setTimeout(function () {
             resolve(cont);
-        }, 5000);
+        }, 3000);
         if (!rooms) {
             reject(new Error('Error'));
         }
@@ -111,7 +111,7 @@ function getNotifications(req, res) {
                     const result = await contRooms(rooms, userId, 0);
                     res.status(200).send({ cont: result });
                 } catch (err) {
-                    console.log(err.message);
+                    res.status(500).send({ message: err });
                 }
             } else {
                 res.status(500).send({ message: 'No hay conversaciones' });
@@ -160,7 +160,7 @@ function getContactsNotifications(req, res) {
 
     setTimeout(function () {
         res.status(200).send({ noReadMessages: contactsMessages });
-    }, 5000);
+    }, 3000);
 
 }
 
