@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 
 var hbs = require('nodemailer-express-handlebars'),
 	email = process.env.MAILER_EMAIL_ID || 'hdconsultingweb@gmail.com',
-	pass = process.env.MAILER_PASSWORD || 'gqvdrztdkusvugxd';
+	pass = process.env.MAILER_PASSWORD || 'passsord';
 
 var smtpTransport = nodemailer.createTransport({
 	service: process.env.MAILER_SERVICE_PROVIDER || 'Gmail',
